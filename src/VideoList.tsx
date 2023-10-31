@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import VideoItem from './VideoItem';
 import SearchBar from './SearchBar';
 
@@ -9,7 +9,7 @@ interface VideoListProps {
 
 const VideoList: React.FC<VideoListProps> = ({ videos }) => {
   const [filteredVideos, setFilteredVideos] = React.useState(videos);
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate(); 
 
   const handleSearch = (query: string) => {
     const filtered = videos.filter((video) =>
@@ -19,8 +19,7 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
   };
 
   const handleLogout = () => {
-    // Add logic for logging out (e.g., clearing user session)
-    // For now, just navigate to the login page
+    
     navigate('/login');
   };
 

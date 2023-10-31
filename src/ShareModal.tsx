@@ -1,16 +1,15 @@
 import React from 'react';
 
 interface ShareModalProps {
-  onClose: () => void; // Function to close the modal
+  onClose: () => void; 
 }
 
 const ShareModal: React.FC<ShareModalProps> = ({ onClose }) => {
   const [email, setEmail] = React.useState('');
 
   const handleConfirm = () => {
-    // Handle the sharing functionality here (e.g., send the email)
-    // You can customize this function as needed.
-    onClose(); // Close the modal after confirming
+    
+    onClose(); 
   };
 
   return (

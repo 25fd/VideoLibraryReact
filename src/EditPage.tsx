@@ -1,17 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+import { useNavigate } from 'react-router-dom'; 
 
 const EditPage: React.FC = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
-  // Function to handle navigation back to the page with VideoItems
   const handleGoBack = () => {
-    navigate('/home'); // Navigate to the desired route
+    navigate('/home'); 
   };
 
   return (
     <div className="edit-page">
-      {/* Add a Back button to trigger navigation */}
+      {}
       <button className="back-button" onClick={handleGoBack}>
         Back
       </button>
