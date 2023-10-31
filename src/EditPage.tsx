@@ -1,10 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 
 const EditPage: React.FC = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  // Function to handle navigation back to the page with VideoItems
+  const handleGoBack = () => {
+    navigate('/home'); // Navigate to the desired route
+  };
+
   return (
     <div className="edit-page">
+      {/* Add a Back button to trigger navigation */}
+      <button className="back-button" onClick={handleGoBack}>
+        Back
+      </button>
       <div className="main-content">
-
         <video className="main-video" width="100%" controls>
           <source src="https://www.example.com/your-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -40,7 +51,6 @@ const EditPage: React.FC = () => {
             <option value="uploadThumbnail">Upload</option>
           </select>
         </div>
-
       </div>
     </div>
   );

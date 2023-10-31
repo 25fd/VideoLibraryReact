@@ -5,6 +5,7 @@ import EditPage from './EditPage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 
+
 const App: React.FC = () => {
   const sampleVideos = [
     'https://www.example.com/video1.mp4',
@@ -17,18 +18,24 @@ const App: React.FC = () => {
     'https://www.example.com/video8.mp4',
     'https://www.example.com/video9.mp4',
     'https://www.example.com/video10.mp4',
+    'https://www.example.com/video11.mp4',
+    'https://www.example.com/video12.mp4',
+    'https://www.example.com/video13.mp4',
+    'https://www.example.com/video14.mp4',
+    'https://www.example.com/video15.mp4',
+    'https://www.example.com/video16.mp4',
+    'https://www.example.com/video17.mp4',
+    'https://www.example.com/video18.mp4',
+    'https://www.example.com/video19.mp4',
+    'https://www.example.com/video20.mp4'
   ];
 
   return (
     <Router>
       <div>
         <nav>
-          <ul>
-            <h1 style={{ fontWeight: 'bold', textAlign: 'center' }}>
-              Video Library
-            </h1>
+          <h1 style={{ fontWeight: 'bold', textAlign: 'center' }}>Video Library <a href="#"></a></h1>
 
-          </ul>
         </nav>
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
@@ -36,8 +43,12 @@ const App: React.FC = () => {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<VideoList videos={sampleVideos} />} />
           <Route path="/edit" element={<EditPage />} />
+
           
         </Routes>
+        <nav style={{textAlign: 'center'}} id='footer'>
+          <h2>Video Library@2023</h2>
+        </nav>
       </div>
     </Router>
   );

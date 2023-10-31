@@ -1,39 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ShareModal from './ShareModal';
 
 interface VideoItemProps {
   video: string;
 }
 
 const VideoItem: React.FC<VideoItemProps> = ({ video }) => {
+  const [showShareModal, setShowShareModal] = useState(false);
+
+  const handleShare = () => {
+    setShowShareModal(true);
+  };
+
+  const closeShareModal = () => {
+    setShowShareModal(false);
+  };
+
   return (
     <div className="video-item">
       <p>Video Title</p>
+      
       <video className="video-player" width="100%" controls>
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="edit-button-container">
-        <Link to="/edit" className="edit-button">
-          Edit
-        </Link><br/><br/>
-        
-        
-      </div>
-      <p> Description: </p>
-      <p> Tags: </p>
-
-
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <div className="buttons-container">
+        <button className="edit-button">
+          <Link to="/edit">Edit</Link>
+        </button>
+        <button className="share-button" onClick={handleShare}>
           Share
-      </button>
-
-      
+        </button>
+      </div>
+      <p>Description: </p>
+      <p>Tags: </p>
+      {showShareModal && <ShareModal onClose={closeShareModal} />}
     </div>
   );
 };
 
 export default VideoItem;
-
-
 
