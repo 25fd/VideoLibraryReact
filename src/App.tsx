@@ -4,7 +4,17 @@ import VideoList from './VideoList';
 import EditPage from './EditPage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { useToast } from './contexts/ToastContext';
+import { Outlet } from 'react-router-dom';
+import Tost from './Tost';
+import FileUpload from './FileUploadPage';
 
+const PrivateRoute:React.FC = () => {
+  const { user } = useAuth();
+
+  return user ? <Outlet />: <Navigate to="/login" />
+};
 
 const App: React.FC = () => {
   const sampleVideos = [
@@ -30,6 +40,9 @@ const App: React.FC = () => {
     'https://www.example.com/video20.mp4'
   ];
 
+  const { showToast, setShowToast, message, type } = useToast();
+
+  console.log(showToast, setShowToast, message, type);
   return (
     <Router>
       <div>
@@ -37,16 +50,26 @@ const App: React.FC = () => {
           <h1 style={{ fontWeight: 'bold', textAlign: 'center' }}>Video Library <a href="#"></a></h1>
 
         </nav>
+       {
+          showToast && (
+            <Tost message={message} type={type} onClose={() => setShowToast(false)}/>
+          )
+       }
+        <AuthProvider>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+        <Route path='/' element={<PrivateRoute/>}>
+        <Route path="/home" element={<VideoList videos={sampleVideos} />} />
+          <Route path="/edit" element={<EditPage />} />
+          <Route path='/upload' element={<FileUpload/>}/>
+          </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/home" element={<VideoList videos={sampleVideos} />} />
-          <Route path="/edit" element={<EditPage />} />
 
           
         </Routes>
-        <nav style={{textAlign: 'center'}} id='footer'>
+        </AuthProvider>
+      
+        <nav style={{textAlign: 'center', position: 'fixed', bottom: 0, width: '100%'}} id='footer'>
           <h2>Video Library@2023</h2>
         </nav>
       </div>

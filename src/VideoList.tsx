@@ -23,11 +23,15 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
     navigate('/login');
   };
 
+  const onUploadClick = () => {
+    navigate('/upload');
+  }
+
   return (
     <div>
       <div className="button-container">
         <div className="button-row">
-          <button type="submit" className="upload-button">Upload Video</button>
+          <button type="submit" className="upload-button" onClick={onUploadClick}>Upload Video</button>
           <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
         <SearchBar onSearch={handleSearch} />
