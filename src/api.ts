@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = 'https://video-library-backend-falguns-projects.vercel.app/api';
 
 export type User = {
   user: { username: string; email: string; password: string };
