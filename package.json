@@ -1,5 +1,6 @@
 {
   "name": "video-library",
+  "homepage": "https://25fd.github.io/VideoLibraryReact/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
