@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import VideoMetadata  from './VideoMetadata';''
-import api, {Video} from './api';
+import { useNavigate } from 'react-router-dom';
+import VideoMetadata from './VideoMetadata'; ''
+import api from './api';
 import { useLocation } from 'react-router-dom';
-import { 
+import {
   useVideo,
- } from './contexts/VideoContext';
+} from './contexts/VideoContext';
 
 const EditPage: React.FC = () => {
   const navigate = useNavigate();
@@ -20,15 +20,15 @@ const EditPage: React.FC = () => {
 
   useEffect(() => {
     const video = getVideoById(fileId)
-      setTitle(video.title);
-      setDescription(video.description);
-      setIsPublic(video.isPublic);
-      setTags(video.tags);
-      setUrl(video.url);
+    setTitle(video.title);
+    setDescription(video.description);
+    setIsPublic(video.isPublic);
+    setTags(video.tags);
+    setUrl(video.url);
   }, []);
 
   const handleSubmit = async () => {
-    const metadata ={ 
+    const metadata = {
       title: title,
       description: description,
       isPublic: isPublic,
@@ -42,12 +42,12 @@ const EditPage: React.FC = () => {
   };
 
   const handleGoBack = () => {
-    navigate('/home'); 
+    navigate('/home');
   };
 
   return (
-    <div className="edit-page">
-      {}
+    <>    <div className="edit-page">
+      { }
       <button className="back-button" onClick={handleGoBack}>
         Back
       </button>
@@ -66,9 +66,13 @@ const EditPage: React.FC = () => {
         setDescription={setDescription}
         isPublic={isPublic}
         setIsPublic={setIsPublic}
-       />
-       <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+        fileId={fileId}
+      />
     </div>
+      <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+    </>
+
+
   );
 };
 

@@ -11,7 +11,7 @@ const FileUploadPage = () => {
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
     const [isPublic, setIsPublic] = useState<boolean>(false);
-    const [tags, setTags] = useState<[]>([]);
+    const [tags, setTags] = useState<string>('');
     const navigate = useNavigate();
     const {
         setShowToast,
@@ -38,7 +38,7 @@ const FileUploadPage = () => {
         formData.append('title', title);
         formData.append('description', description);
         formData.append('isPublic', String(isPublic));
-        formData.append('tags', tags.join(','));
+        formData.append('tags', tags);
 
         try {
             await api.uploadFile(formData);

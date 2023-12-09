@@ -27,11 +27,16 @@ const VideoItem: React.FC<VideoItemProps> = ({ video }) => {
   return (
     <div className="video-item card" >
       <p>{video.title}</p>
-      
-      <video className="video-player" width="100%" controls>
-        <source src={video?.url} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {video.thumbnailUrl ? (
+        <img src={video?.thumbnailUrl} alt={video.name}></img>
+      ) : (
+        <video className="video-player" width="100%" controls>
+          <source src={video?.url} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )
+      }
+
       <div className="buttons-container">
         <button className="edit-button" onClick={handleEdit}>
           Edit
