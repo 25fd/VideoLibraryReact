@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ShareModal from './ShareModal';
+import api, { Video } from './api'
+
 
 interface VideoItemProps {
-  video: string;
+  video: Video;
 }
 
 const VideoItem: React.FC<VideoItemProps> = ({ video }) => {
   const [showShareModal, setShowShareModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleShare = () => {
     setShowShareModal(true);
@@ -17,25 +20,29 @@ const VideoItem: React.FC<VideoItemProps> = ({ video }) => {
     setShowShareModal(false);
   };
 
+  const handleEdit = () => {
+    navigate('/edit?file=' + video._id);
+  }
+
   return (
-    <div className="video-item">
-      <p>Video Title</p>
+    <div className="video-item card" >
+      <p>{video.title}</p>
       
       <video className="video-player" width="100%" controls>
-        <source src={video} type="video/mp4" />
+        <source src={video?.url} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="buttons-container">
-        <button className="edit-button">
-          <Link to="/edit">Edit</Link>
+        <button className="edit-button" onClick={handleEdit}>
+          Edit
         </button>
         <button className="share-button" onClick={handleShare}>
           Share
         </button>
       </div>
-      <p>Description: </p>
-      <p>Tags: </p>
-      {showShareModal && <ShareModal onClose={closeShareModal} />}
+      <p>Description: {video.description}</p>
+      <p>Tags:{video.tags} </p>
+      {showShareModal && <ShareModal onClose={closeShareModal} fileId={video._id} />}
     </div>
   );
 };

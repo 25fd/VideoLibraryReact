@@ -5,6 +5,23 @@ export type User = {
   token: string;
 };
 
+export type Video = {
+  name: string;
+  title: string;
+  description: string;
+  tags: string[];
+  url: string;
+  thumbnailUrl: string;
+  isPublic: boolean;
+  _id: string;
+};
+
+export type VideoList = {
+  ownedFiles?: Video[],
+  sharedFiles?: Video[],
+  publicFiles?: Video[],
+}
+
 const api = {
   register: async (userData: {
     email: string;
@@ -101,6 +118,22 @@ const api = {
     const data = await response.json();
     return data;
   },
+
+  updateFileApi: async (fileId: string, fileData: object) => {
+    const user = localStorage.getItem('user');
+    const { token } = JSON.parse(user as string);
+    const response = await fetch(`${BASE_URL}/file/update/${fileId}`, {
+      method: 'PUT',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(fileData),
+    });
+    const data = await response.json();
+    return data;
+  }
 };
 
 export default api;

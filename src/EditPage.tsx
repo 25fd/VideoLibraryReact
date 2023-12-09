@@ -1,8 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
+import VideoMetadata  from './VideoMetadata';''
+import api, {Video} from './api';
+import { useLocation } from 'react-router-dom';
+import { 
+  useVideo,
+ } from './contexts/VideoContext';
 
 const EditPage: React.FC = () => {
   const navigate = useNavigate();
+  const [title, setTitle] = React.useState<string>('');
+  const [description, setDescription] = React.useState<string>('');
+  const [isPublic, setIsPublic] = React.useState<boolean>(false);
+  const [tags, setTags] = React.useState<string[]>([]);
+  const location = useLocation();
+  const fileId = location.search.split('=')[1];
+  const [url, setUrl] = React.useState<string>('');
+  const { getVideoById } = useVideo();
+
+  useEffect(() => {
+    const video = getVideoById(fileId)
+      setTitle(video.title);
+      setDescription(video.description);
+      setIsPublic(video.isPublic);
+      setTags(video.tags);
+      setUrl(video.url);
+  }, []);
+
+  const handleSubmit = async () => {
+    const metadata ={ 
+      title: title,
+      description: description,
+      isPublic: isPublic,
+      tags: tags,
+    };
+    try {
+      await api.updateFileApi(fileId, metadata);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleGoBack = () => {
     navigate('/home'); 
@@ -16,41 +53,21 @@ const EditPage: React.FC = () => {
       </button>
       <div className="main-content">
         <video className="main-video" width="100%" controls>
-          <source src="https://www.example.com/your-video.mp4" type="video/mp4" />
+          <source src={url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
-      <div className="right-sidebar">
-        <div className="sidebar-item">
-          <label htmlFor="videoTitle">Video Title</label>
-          <input type="text" id="videoTitle" name="videoTitle" placeholder="Enter video title" />
-        </div>
-        <div className="sidebar-item">
-          <label htmlFor="tags">Tags</label>
-          <input type="text" id="tags" name="tags" placeholder="Enter tags, separated by commas" />
-        </div>
-        <div className="sidebar-item">
-          <label htmlFor="description">Description</label>
-          <textarea id="description" name="description" placeholder="Enter video description"></textarea>
-        </div>
-        <div className="sidebar-item checkbox-item">
-          <label>
-            To mark video private uncheck the box
-            <input type="checkbox" defaultChecked={true} />
-          </label>
-        </div><br></br>
-        <div className="sidebar-item">
-          <label htmlFor="mergeVideos">Merge Videos</label>
-          <button className="merge-button">+ Merge</button>
-        </div>
-        <div className="sidebar-item">
-          <label htmlFor="thumbnailDropdown">Select Thumbnail</label>
-          <select id="thumbnailDropdown" name="thumbnailDropdown">
-            <option value="selectFromVideo">Select from Video</option>
-            <option value="uploadThumbnail">Upload</option>
-          </select>
-        </div>
-      </div>
+      <VideoMetadata
+        title={title}
+        setTitle={setTitle}
+        tags={tags}
+        setTags={setTags}
+        description={description}
+        setDescription={setDescription}
+        isPublic={isPublic}
+        setIsPublic={setIsPublic}
+       />
+       <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

@@ -1,15 +1,18 @@
 import React from 'react';
+import api from './api';
 
 interface ShareModalProps {
   onClose: () => void; 
+  fileId: string;
 }
 
-const ShareModal: React.FC<ShareModalProps> = ({ onClose }) => {
+const ShareModal: React.FC<ShareModalProps> = ({ onClose, fileId }) => {
   const [email, setEmail] = React.useState('');
 
   const handleConfirm = () => {
-    
-    onClose(); 
+    api.shareFileApi(fileId, email,true, true).then(()=> {
+      onClose();
+    });
   };
 
   return (

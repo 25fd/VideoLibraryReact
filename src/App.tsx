@@ -1,4 +1,6 @@
 import React from 'react';
+import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
+
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import VideoList from './VideoList';
 import EditPage from './EditPage';
@@ -9,6 +11,7 @@ import { useToast } from './contexts/ToastContext';
 import { Outlet } from 'react-router-dom';
 import Tost from './Tost';
 import FileUpload from './FileUploadPage';
+import { VideoProvider } from './contexts/VideoContext'
 
 const PrivateRoute:React.FC = () => {
   const { user } = useAuth();
@@ -56,6 +59,7 @@ const App: React.FC = () => {
           )
        }
         <AuthProvider>
+          <VideoProvider>
         <Routes>
         <Route path='/' element={<PrivateRoute/>}>
         <Route path="/home" element={<VideoList videos={sampleVideos} />} />
@@ -67,9 +71,10 @@ const App: React.FC = () => {
 
           
         </Routes>
+        </VideoProvider>
         </AuthProvider>
       
-        <nav style={{textAlign: 'center', position: 'fixed', bottom: 0, width: '100%'}} id='footer'>
+        <nav style={{textAlign: 'center', width: '100%'}} id='footer'>
           <h2>Video Library@2023</h2>
         </nav>
       </div>

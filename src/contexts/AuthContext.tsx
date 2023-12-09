@@ -36,6 +36,11 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
     }
   };
 
+  const isAuth = () => {
+    const user = localStorage.getItem('user');
+    return user !== null;
+  }
+
   // Function to handle user registration
   const register = async (username: string, email: string, password: string): Promise<{message: string, error: string}> => {
     try {

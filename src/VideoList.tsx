@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import VideoItem from './VideoItem';
 import SearchBar from './SearchBar';
+import { useVideo } from './contexts/VideoContext'
+import { Video, VideoList } from './api'
 
 interface VideoListProps {
   videos: string[];
 }
 
-const VideoList: React.FC<VideoListProps> = ({ videos }) => {
-  const [filteredVideos, setFilteredVideos] = React.useState(videos);
-  const navigate = useNavigate(); 
+const VideoListPage: React.FC<VideoListProps> = ({ videos }) => {
+  const navigate = useNavigate();
+  const { videos: videoList, getVideos } = useVideo(); 
+  const [filteredVideos, setFilteredVideos] = React.useState(videoList);
+
+
+  useEffect(() => {
+    getVideos().then(() => {
+      console.log(videoList);
+    });
+  },[]);
 
   const handleSearch = (query: string) => {
-    const filtered = videos.filter((video) =>
-      video.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredVideos(filtered);
+    // const filtered = videos.filter((video) =>
+    //   video.toLowerCase().includes(query.toLowerCase())
+    // );
+    // setFilteredVideos(filtered);
   };
 
   const handleLogout = () => {
@@ -37,12 +47,17 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
         <SearchBar onSearch={handleSearch} />
       </div>
       <div className="video-list">
-        {filteredVideos.map((video, index) => (
+        {videoList.ownedFiles?.map((video, index) => (
           <VideoItem key={index} video={video} />
         ))}
+        {
+           videoList.publicFiles &&videoList.publicFiles.map((video: Video, index) => (
+            <VideoItem key={index} video={video} />
+          ))
+        }
       </div>
     </div>
   );
 };
 
-export default VideoList;
+export default VideoListPage;
