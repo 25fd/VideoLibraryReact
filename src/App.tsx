@@ -15,7 +15,7 @@ import { VideoProvider } from './contexts/VideoContext'
 const PrivateRoute:React.FC = () => {
   const { user } = useAuth();
 
-  return user ? <Outlet />: <Navigate to="/login" />
+  return user ? <Outlet />: <Navigate to="/VideoLibraryReact/login" />
 };
 
 const App: React.FC = () => {

@@ -38,7 +38,7 @@ const SignupPage: React.FC = () => {
       console.log(error);
     }
     setShowToast(true);
-    navigate('/login');
+    navigate('/VideoLibraryReact/login');
   };
 
   return (

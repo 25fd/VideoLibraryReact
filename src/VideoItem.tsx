@@ -21,7 +21,7 @@ const VideoItem: React.FC<VideoItemProps> = ({ video }) => {
   };
 
   const handleEdit = () => {
-    navigate('/edit?file=' + video._id);
+    navigate('/VideoLibraryReact/edit?file=' + video._id);
   }
 
   return (

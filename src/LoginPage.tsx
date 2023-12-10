@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
       } else {
         setMessage('login successful');
         setType('success');
-        navigate('/home');
+        navigate('/VideoLibraryReact/home');
       }
       setShowToast(true);
     } catch (error) {

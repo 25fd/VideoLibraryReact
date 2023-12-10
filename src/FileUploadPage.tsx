@@ -55,7 +55,7 @@ const FileUploadPage = () => {
     return (
         <>
             <div>
-                <button className="back-button" onClick={() => { navigate('/home') }}>
+                <button className="back-button" onClick={() => { navigate('/VideoLibraryReact/home') }}>
                     Back
                 </button>
             </div>

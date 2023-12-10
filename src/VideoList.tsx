@@ -30,11 +30,11 @@ const VideoListPage: React.FC<VideoListProps> = ({ videos }) => {
 
   const handleLogout = () => {
     
-    navigate('/login');
+    navigate('/VideoLibraryReact/login');
   };
 
   const onUploadClick = () => {
-    navigate('/upload');
+    navigate('/VideoLibraryReact/upload');
   }
 
   return (
