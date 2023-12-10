@@ -60,13 +60,13 @@ const App: React.FC = () => {
         <AuthProvider>
           <VideoProvider>
         <Routes>
-        <Route path='/' element={<PrivateRoute/>}>
-        <Route path="/home" element={<VideoList videos={sampleVideos} />} />
-          <Route path="/edit" element={<EditPage />} />
-          <Route path='/upload' element={<FileUpload/>}/>
+        <Route path='/VideoLibraryReact/' element={<PrivateRoute/>}>
+        <Route path="/VideoLibraryReact/home" element={<VideoList videos={sampleVideos} />} />
+          <Route path="/VideoLibraryReact/edit" element={<EditPage />} />
+          <Route path='/VideoLibraryReact/upload' element={<FileUpload/>}/>
           </Route>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/VideoLibraryReact/login" element={<LoginPage />} />
+          <Route path="/VideoLibraryReact/signup" element={<SignupPage />} />
 
           
         </Routes>
