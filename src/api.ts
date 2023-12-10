@@ -1,4 +1,5 @@
 const BASE_URL = 'https://video-library-backend-falguns-projects.vercel.app/api';
+// const BASE_URL = 'http://localhost:8080/api';
 
 export type User = {
   user: { username: string; email: string; password: string };
@@ -61,6 +62,20 @@ const api = {
         authorization: `Bearer ${token}`,
       },
       body: fileData,
+    });
+    const data = await response.json();
+    return data;
+  },
+  uploadThumbnail: async (fileId: string, fileData: FormData) => {
+    const user = localStorage.getItem('user');
+    const { token } = JSON.parse(user as string);
+    const response = await fetch(`${BASE_URL}/file/upload-thumbnail/${fileId}`, {
+      method: 'POST',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        authorization: `Bearer ${token}`,
+      },
+      body: fileData
     });
     const data = await response.json();
     return data;

@@ -13,9 +13,9 @@ import FileUpload from './FileUploadPage';
 import { VideoProvider } from './contexts/VideoContext'
 
 const PrivateRoute:React.FC = () => {
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  return user ? <Outlet />: <Navigate to="/VideoLibraryReact/login" />
+  return isAuthenticated() ? <Outlet />: <Navigate to="/VideoLibraryReact/login" />
 };
 
 const App: React.FC = () => {

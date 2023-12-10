@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
       throw error;
     }
   };
-
   // Function to handle user registration
   const register = async (username: string, email: string, password: string): Promise<{message: string, error: string}> => {
     try {
