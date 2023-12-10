@@ -10,7 +10,7 @@ export type Video = {
   name: string;
   title: string;
   description: string;
-  tags: string[];
+  tags: string | string[];
   url: string;
   thumbnailUrl: string;
   isPublic: boolean;

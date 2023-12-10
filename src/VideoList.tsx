@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import VideoItem from './VideoItem';
 import SearchBar from './SearchBar';
 import { useVideo } from './contexts/VideoContext'
-import { Video } from './api'
 
 interface VideoListProps {
   videos: string[];

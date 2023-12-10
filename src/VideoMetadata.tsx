@@ -12,7 +12,7 @@ type VideoMetadataProps = {
     setDescription: (description: string) => void;
     isPublic: boolean;
     setIsPublic: (isPublic: boolean) => void;
-    fileId: string;
+    fileId?: string;
 };
 
 const VideoMetadata = ({
@@ -51,7 +51,7 @@ const VideoMetadata = ({
         formData.append('file', selectedFile);
 
         try {
-            await api.uploadThumbnail(fileId, formData);
+            await api.uploadThumbnail(fileId || '', formData);
             setType('success');
             setMessage('File uploaded successfully');
         } catch (error) {

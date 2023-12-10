@@ -12,7 +12,7 @@ const EditPage: React.FC = () => {
   const [title, setTitle] = React.useState<string>('');
   const [description, setDescription] = React.useState<string>('');
   const [isPublic, setIsPublic] = React.useState<boolean>(false);
-  const [tags, setTags] = React.useState<string[]>([]);
+  const [tags, setTags] = React.useState<string>('');
   const location = useLocation();
   const fileId = location.search.split('=')[1];
   const [url, setUrl] = React.useState<string>('');
@@ -23,7 +23,7 @@ const EditPage: React.FC = () => {
     setTitle(video.title);
     setDescription(video.description);
     setIsPublic(video.isPublic);
-    setTags(video.tags);
+    setTags(video.tags as string);
     setUrl(video.url);
   }, []);
 
