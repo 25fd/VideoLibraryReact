@@ -42,7 +42,7 @@ const EditPage: React.FC = () => {
   };
 
   const handleGoBack = () => {
-    navigate('/home');
+    navigate('/VideoLibraryReact/home'); 
   };
 
   return (

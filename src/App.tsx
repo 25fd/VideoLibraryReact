@@ -1,7 +1,6 @@
 import React from 'react';
-import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import VideoList from './VideoList';
 import EditPage from './EditPage';
 import LoginPage from './LoginPage';
@@ -16,7 +15,7 @@ import { VideoProvider } from './contexts/VideoContext'
 const PrivateRoute:React.FC = () => {
   const { isAuthenticated } = useAuth();
 
-  return isAuthenticated() ? <Outlet />: <Navigate to="/login" />
+  return isAuthenticated() ? <Outlet />: <Navigate to="/VideoLibraryReact/login" />
 };
 
 const App: React.FC = () => {
@@ -55,19 +54,19 @@ const App: React.FC = () => {
         </nav>
        {
           showToast && (
-            <Tost message={message} type={type} onClose={() => setShowToast(false)}/>
+            <Tost message={message} onClose={() => setShowToast(false)}/>
           )
        }
         <AuthProvider>
           <VideoProvider>
         <Routes>
-        <Route path='/' element={<PrivateRoute/>}>
-        <Route path="/home" element={<VideoList videos={sampleVideos} />} />
-          <Route path="/edit" element={<EditPage />} />
-          <Route path='/upload' element={<FileUpload/>}/>
+        <Route path='/VideoLibraryReact/' element={<PrivateRoute/>}>
+        <Route path="/VideoLibraryReact/home" element={<VideoList videos={sampleVideos} />} />
+          <Route path="/VideoLibraryReact/edit" element={<EditPage />} />
+          <Route path='/VideoLibraryReact/upload' element={<FileUpload/>}/>
           </Route>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/VideoLibraryReact/login" element={<LoginPage />} />
+          <Route path="/VideoLibraryReact/signup" element={<SignupPage />} />
 
           
         </Routes>

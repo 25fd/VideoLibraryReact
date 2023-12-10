@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import VideoItem from './VideoItem';
 import SearchBar from './SearchBar';
 import { useVideo } from './contexts/VideoContext'
-import { Video, VideoList } from './api'
+import { Video } from './api'
 
 interface VideoListProps {
   videos: string[];
@@ -11,17 +11,17 @@ interface VideoListProps {
 
 const VideoListPage: React.FC<VideoListProps> = ({ videos }) => {
   const navigate = useNavigate();
-  const { videos: videoList, getVideos } = useVideo();
-  const [filteredVideos, setFilteredVideos] = React.useState(videoList);
+  const { videos: videoList, getVideos } = useVideo(); 
+  // const [filteredVideos, setFilteredVideos] = React.useState(videoList);
 
 
   useEffect(() => {
     getVideos().then(() => {
-      console.log(videoList);
+      console.log(videos);
     });
   }, []);
 
-  const handleSearch = (query: string) => {
+  const handleSearch = () => {
     // const filtered = videos.filter((video) =>
     //   video.toLowerCase().includes(query.toLowerCase())
     // );
@@ -29,12 +29,12 @@ const VideoListPage: React.FC<VideoListProps> = ({ videos }) => {
   };
 
   const handleLogout = () => {
-
-    navigate('/login');
+    
+    navigate('/VideoLibraryReact/login');
   };
 
   const onUploadClick = () => {
-    navigate('/upload');
+    navigate('/VideoLibraryReact/upload');
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import api, {VideoList, Video}  from '../api';
 
 type VideoContextType = {
@@ -22,9 +22,9 @@ export const VideoProvider = ({children} : { children: React.ReactNode}) => {
         setVideos(response);
     }
 
-    const getVideoById = (id: string): Video|undefined => {
+    const getVideoById = (id: string): Video => {
         const response = videos.ownedFiles?.find((video: Video) => video._id === id);
-        return response;
+        return response || {} as Video;
     
     }
 

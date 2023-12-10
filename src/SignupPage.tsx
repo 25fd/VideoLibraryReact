@@ -13,7 +13,7 @@ const SignupPage: React.FC = () => {
   const [confirmPasswordMsg, setConfirmPasswordMsg] = React.useState('');
   const [showToast, setShowToast] = React.useState(false);
   const [message, setMessage] = React.useState('');
-  const [type, setType] = React.useState('');
+  // const [type, setType] = React.useState('');
 
   const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -29,16 +29,16 @@ const SignupPage: React.FC = () => {
       const response = await register(username, email, password);
       if (response.error) {
         setMessage(response.error);
-        setType('error');
+        // setType('error');
       } else {
         setMessage(response.message);
-        setType('success');
+        // setType('success');
       }
     } catch (error) {
       console.log(error);
     }
     setShowToast(true);
-    navigate('/login');
+    navigate('/VideoLibraryReact/login');
   };
 
   return (
@@ -71,7 +71,6 @@ const SignupPage: React.FC = () => {
       {showToast && (
         <Toast
           message={message}
-          type={type}
           onClose={() => setShowToast(false)}
         />
       )}
