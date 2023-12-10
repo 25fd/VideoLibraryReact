@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 type VideoMetadataProps = {
     title: string;
     setTitle: (title: string) => void;
@@ -43,7 +41,7 @@ const VideoMetadata = ({
                     name="tags"
                     placeholder="Enter tags, separated by commas"
                     value={tags}
-                    onChange={(e) => setTags(e.target.value.split[','])}
+                    onChange={() => setTags([])}
                 />
             </div>
             <div className="sidebar-item">

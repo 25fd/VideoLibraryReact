@@ -1,7 +1,6 @@
 import React from 'react';
-import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import VideoList from './VideoList';
 import EditPage from './EditPage';
 import LoginPage from './LoginPage';
@@ -55,7 +54,7 @@ const App: React.FC = () => {
         </nav>
        {
           showToast && (
-            <Tost message={message} type={type} onClose={() => setShowToast(false)}/>
+            <Tost message={message} onClose={() => setShowToast(false)}/>
           )
        }
         <AuthProvider>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShareModal from './ShareModal';
-import api, { Video } from './api'
+import  { Video } from './api'
 
 
 interface VideoItemProps {

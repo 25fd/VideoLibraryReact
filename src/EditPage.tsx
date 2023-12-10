@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import VideoMetadata  from './VideoMetadata';''
-import api, {Video} from './api';
+import api from './api';
 import { useLocation } from 'react-router-dom';
 import { 
   useVideo,

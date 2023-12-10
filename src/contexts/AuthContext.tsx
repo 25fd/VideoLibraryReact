@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import api, { User } from '../api';
 
 
@@ -36,11 +36,6 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
     }
   };
 
-  const isAuth = () => {
-    const user = localStorage.getItem('user');
-    return user !== null;
-  }
-
   // Function to handle user registration
   const register = async (username: string, email: string, password: string): Promise<{message: string, error: string}> => {
     try {
@@ -64,6 +59,7 @@ export const AuthProvider = ({ children }: { children: ReactNode}) => {
 
   // Function to check if a user is authenticated
   const isAuthenticated = () => {
+    const user = localStorage.getItem('user');
     return user !== null;
   };
 
